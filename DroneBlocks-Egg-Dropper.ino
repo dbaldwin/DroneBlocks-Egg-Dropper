@@ -99,7 +99,7 @@ void loop(void) {
        *  It will happen much faster. This logic can probably be improved.
        */
         
-        if ((millis() - startRotationTime > 3000) && (millis() - startRotationTime < 5000)) {
+        if ((millis() - startRotationTime > 2000) && (millis() - startRotationTime < 6000)) {
           
           if (rotationDirection == CW && totalRotationDegrees > 350) {
 
