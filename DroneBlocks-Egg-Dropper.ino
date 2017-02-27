@@ -5,8 +5,8 @@
 /* Assign a unique ID to this sensor at the same time */
 Adafruit_HMC5883_Unified mag = Adafruit_HMC5883_Unified(12345);
 
-int RED = 2;
-int GREEN = 3;
+int RED = 4;
+int GREEN = 5;
 
 void setup(void) {
   
@@ -188,7 +188,7 @@ void loop(void) {
   }
 
   // This will constantly print the heading for debug purposes
-  //Serial.println(currentHeading);
+  // Serial.println(currentHeading);
   
   delay(250);
 }
