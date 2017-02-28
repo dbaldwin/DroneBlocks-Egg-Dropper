@@ -101,12 +101,12 @@ void loop(void) {
         
         if ((millis() - startRotationTime > 3000) && (millis() - startRotationTime < 6000)) {
           
-          if (rotationDirection == CW && totalRotationDegrees > 350) {
+          if (rotationDirection == CW && totalRotationDegrees > 340) {
 
             digitalWrite(GREEN, HIGH);
             digitalWrite(RED, LOW);
         
-          } else if (rotationDirection == CCW && totalRotationDegrees > 350) {
+          } else if (rotationDirection == CCW && totalRotationDegrees > 340) {
 
             digitalWrite(GREEN, HIGH);
             digitalWrite(RED, LOW);
