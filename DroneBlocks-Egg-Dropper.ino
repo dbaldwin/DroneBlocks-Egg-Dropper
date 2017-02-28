@@ -77,9 +77,15 @@ void loop(void) {
     heading -= 2*PI;
 
   previousHeading = currentHeading;
+
+  Serial.print("Previous heading: ");
+  Serial.print(previousHeading);
   
   // Convert radians to degrees for readability.
   currentHeading = heading * 180/M_PI;
+
+  Serial.print(", Current heading: ");
+  Serial.println(currentHeading);
 
   /* Handle when the compass is done rotating */
   if (abs(currentHeading - previousHeading) <= tolerance) {
@@ -188,7 +194,7 @@ void loop(void) {
   }
 
   // This will constantly print the heading for debug purposes
-  // Serial.println(currentHeading);
+  //Serial.println(currentHeading);
   
   delay(250);
 }
