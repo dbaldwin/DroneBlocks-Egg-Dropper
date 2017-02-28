@@ -1,12 +1,18 @@
 #include <Wire.h>
+#include <Servo.h>
 #include <Adafruit_Sensor.h>
 #include <Adafruit_HMC5883_U.h>
+
+
+Servo dropServo;
 
 /* Assign a unique ID to this sensor at the same time */
 Adafruit_HMC5883_Unified mag = Adafruit_HMC5883_Unified(12345);
 
 int RED = 4;
 int GREEN = 5;
+int SERVO_CLOSED = 90;
+int SERVO_OPEN = 45;
 
 void setup(void) {
   
@@ -14,6 +20,11 @@ void setup(void) {
  
   pinMode(GREEN, OUTPUT);
   pinMode(RED, OUTPUT);
+
+  // Setup the servo and its default position
+  dropServo.attach(9);
+  delay(100);
+  dropServo.write(SERVO_CLOSED);
 
   if(!mag.begin()) {
     Serial.println("Ooops, no HMC5883 detected ... Check your wiring!");
@@ -50,6 +61,7 @@ void loop(void) {
 
     digitalWrite(GREEN, LOW);
     digitalWrite(RED, LOW);
+    dropServo.write(SERVO_CLOSED);
     
   }
   
@@ -111,16 +123,19 @@ void loop(void) {
 
             digitalWrite(GREEN, HIGH);
             digitalWrite(RED, LOW);
+            dropServo.write(SERVO_OPEN);
         
           } else if (rotationDirection == CCW && totalRotationDegrees > 340) {
 
             digitalWrite(GREEN, HIGH);
             digitalWrite(RED, LOW);
+            dropServo.write(SERVO_OPEN);
             
           } else {
 
             digitalWrite(GREEN, LOW);
             digitalWrite(RED, HIGH);
+            dropServo.write(SERVO_CLOSED);
             
           }
 
