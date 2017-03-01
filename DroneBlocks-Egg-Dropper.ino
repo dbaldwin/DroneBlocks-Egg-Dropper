@@ -108,7 +108,7 @@ void loop(void) {
 
       Serial.println(totalRotationDegrees);
 
-      /*  Based on the rotation direction we need
+      /*  Based on the rotation direction (we only support CW now) we need
        *  to calculate and see if a 360 rotation happened.
        *  If a rotation starts at 10 degrees and ends at 30 degrees
        *  we can count on the timer logic to know whether or not a full
@@ -124,13 +124,7 @@ void loop(void) {
             digitalWrite(GREEN, HIGH);
             digitalWrite(RED, LOW);
             dropServo.write(SERVO_OPEN);
-        
-          /*} else if (rotationDirection == CCW && totalRotationDegrees > 340) {
 
-            digitalWrite(GREEN, HIGH);
-            digitalWrite(RED, LOW);
-            dropServo.write(SERVO_OPEN);*/
-            
           } else {
 
             digitalWrite(GREEN, LOW);
@@ -151,19 +145,6 @@ void loop(void) {
     }
 
     isRotating = false;
-
-  /* Handle the CW rotation passing 0 degrees - this will be a negative number like 5 - 355 */
-  /*} else if (rotationDirection == CW && (currentHeading - previousHeading) < 0) {
-
-    totalRotationDegrees += (currentHeading - previousHeading) + 360;
-
-    Serial.println("Passing 0 degrees CW");*/
-
-  /* Handle the CCW rotation passing 0 degrees - this will be a positive number like 355 - 5 */
-  /*} else if (rotationDirection == CCW && (currentHeading - previousHeading) > 0) {
-
-    Serial.println("Passing 0 degrees CCW");
-    totalRotationDegrees += 360 - (currentHeading - previousHeading);*/
     
   /* Handle the clockwise rotation */
   } else if (currentHeading > previousHeading) {
@@ -185,26 +166,6 @@ void loop(void) {
       totalRotationDegrees += (abs(currentHeading - previousHeading));
       
     }
-
-  /* Handle the counter clockwise rotation */
-  /*} else if (currentHeading < previousHeading) {
-    
-    // Rotation has begun
-    if (!isRotating) {
-      
-      startHeading = currentHeading;
-      isRotating = true;
-      rotationDirection = CCW;
-      startRotationTime = millis();
-
-      Serial.print("Starting rotation at: ");
-      Serial.println(startHeading);
-      
-    } else {
-
-      totalRotationDegrees += (abs(currentHeading - previousHeading));
-      
-    }*/
 
   }
 
