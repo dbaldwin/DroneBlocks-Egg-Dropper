@@ -11,7 +11,7 @@ Adafruit_HMC5883_Unified mag = Adafruit_HMC5883_Unified(12345);
 
 int RED = 4;
 int GREEN = 5;
-int SERVO_CLOSED = 90;
+int SERVO_CLOSED = 0;
 int SERVO_OPEN = 45;
 
 void setup(void) {
@@ -125,11 +125,11 @@ void loop(void) {
             digitalWrite(RED, LOW);
             dropServo.write(SERVO_OPEN);
         
-          } else if (rotationDirection == CCW && totalRotationDegrees > 340) {
+          /*} else if (rotationDirection == CCW && totalRotationDegrees > 340) {
 
             digitalWrite(GREEN, HIGH);
             digitalWrite(RED, LOW);
-            dropServo.write(SERVO_OPEN);
+            dropServo.write(SERVO_OPEN);*/
             
           } else {
 
@@ -153,17 +153,17 @@ void loop(void) {
     isRotating = false;
 
   /* Handle the CW rotation passing 0 degrees - this will be a negative number like 5 - 355 */
-  } else if (rotationDirection == CW && (currentHeading - previousHeading) < 0) {
+  /*} else if (rotationDirection == CW && (currentHeading - previousHeading) < 0) {
 
     totalRotationDegrees += (currentHeading - previousHeading) + 360;
 
-    Serial.println("Passing 0 degrees CW");
+    Serial.println("Passing 0 degrees CW");*/
 
   /* Handle the CCW rotation passing 0 degrees - this will be a positive number like 355 - 5 */
-  } else if (rotationDirection == CCW && (currentHeading - previousHeading) > 0) {
+  /*} else if (rotationDirection == CCW && (currentHeading - previousHeading) > 0) {
 
     Serial.println("Passing 0 degrees CCW");
-    totalRotationDegrees += 360 - (currentHeading - previousHeading);
+    totalRotationDegrees += 360 - (currentHeading - previousHeading);*/
     
   /* Handle the clockwise rotation */
   } else if (currentHeading > previousHeading) {
@@ -187,7 +187,7 @@ void loop(void) {
     }
 
   /* Handle the counter clockwise rotation */
-  } else if (currentHeading < previousHeading) {
+  /*} else if (currentHeading < previousHeading) {
     
     // Rotation has begun
     if (!isRotating) {
@@ -204,7 +204,7 @@ void loop(void) {
 
       totalRotationDegrees += (abs(currentHeading - previousHeading));
       
-    }
+    }*/
 
   }
 
