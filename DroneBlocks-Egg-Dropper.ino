@@ -47,12 +47,7 @@ float startHeading = 0;
 float tolerance = 5.0; // Allow the sensor to bounce around a bit
 float totalRotationDegrees = 0;
 unsigned long ledStartTime = 0;
-
-
 bool isRotating = false;
-
-float headingArray[10];
-int headingCount = 0;
 
 void loop(void) {
 
