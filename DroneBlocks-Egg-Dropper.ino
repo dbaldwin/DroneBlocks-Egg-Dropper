@@ -44,7 +44,7 @@ int rotationDirection = 0;
 float currentHeading = 0;
 float previousHeading = 0;
 float startHeading = 0;
-float tolerance = 5.0; // Allow the sensor to bounce around a bit
+float tolerance = 3.0; // Allow the sensor to bounce around a bit
 float totalRotationDegrees = 0;
 unsigned long ledStartTime = 0;
 bool isRotating = false;
@@ -114,7 +114,7 @@ void loop(void) {
         
         if ((millis() - startRotationTime > 3000) && (millis() - startRotationTime < 6000)) {
           
-          if (rotationDirection == CW && totalRotationDegrees > 340) {
+          if (rotationDirection == CW && totalRotationDegrees > 320) {
 
             digitalWrite(GREEN, HIGH);
             digitalWrite(RED, LOW);
