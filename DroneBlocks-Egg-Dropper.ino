@@ -1,4 +1,4 @@
-#include <Wire.h>
+#//include <Wire.h>
 #include <Servo.h>
 #include <Adafruit_Sensor.h>
 #include <Adafruit_HMC5883_U.h>
@@ -16,7 +16,7 @@ int SERVO_OPEN = 45;
 
 void setup(void) {
   
-  Serial.begin(9600);
+  //Serial.begin(9600);
  
   pinMode(GREEN, OUTPUT);
   pinMode(RED, OUTPUT);
@@ -27,7 +27,7 @@ void setup(void) {
   dropServo.write(SERVO_CLOSED);
 
   if(!mag.begin()) {
-    Serial.println("Ooops, no HMC5883 detected ... Check your wiring!");
+    //Serial.println("Ooops, no HMC5883 detected ... Check your wiring!");
     while(1);
   }
  
@@ -85,23 +85,23 @@ void loop(void) {
 
   previousHeading = currentHeading;
 
-  Serial.print("Previous heading: ");
-  Serial.print(previousHeading);
+  //Serial.print("Previous heading: ");
+  //Serial.print(previousHeading);
   
   // Convert radians to degrees for readability.
   currentHeading = heading * 180/M_PI;
 
-  Serial.print(", Current heading: ");
-  Serial.println(currentHeading);
+  //Serial.print(", Current heading: ");
+  //Serial.println(currentHeading);
 
   /* Handle when the compass is done rotating */
   if (abs(currentHeading - previousHeading) <= tolerance) {
    
     if (isRotating) {
 
-      Serial.print("Total rotation degrees: ");
+      //Serial.print("Total rotation degrees: ");
 
-      Serial.println(totalRotationDegrees);
+      //Serial.println(totalRotationDegrees);
 
       /*  Based on the rotation direction (we only support CW now) we need
        *  to calculate and see if a 360 rotation happened.
@@ -152,8 +152,8 @@ void loop(void) {
       rotationDirection = CW;
       startRotationTime = millis();
 
-      Serial.print("Starting rotation at: ");
-      Serial.println(startHeading);
+      //Serial.print("Starting rotation at: ");
+      //Serial.println(startHeading);
 
     // Let's calculating the aggregrate rotation degrees
     } else {
